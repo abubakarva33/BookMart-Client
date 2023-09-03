@@ -14,15 +14,17 @@ const BookDetails = () => {
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [value, setValue] = useState(3);
   const { bookId } = useParams();
-  const { data } = useGetSelectedBookQuery(bookId);
+  const { data ,isLoading} = useGetSelectedBookQuery(bookId);
+  console.log(data?.data);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const [addToCartBook] = useAddToCartMutation();
   const cartData = useGetCartDataQuery();
 
-  if (!data) {
+  if (isLoading) {
     return "loading";
   }
+  console.log(data?.data);
 
   const handleCart = () => {
     const existingData = cartData.data.find((item) => item.book.id === id)
@@ -49,7 +51,7 @@ const BookDetails = () => {
 
   }
 
-  const { authorName, picture, title, genra, registered, id } = data;
+  const { author, picture, title, genre, createdAt, id } = data.data;
   return (
     <div className="my-5">
       <Card className="card">
@@ -64,9 +66,9 @@ const BookDetails = () => {
                   <h2> Book Title: {title}</h2>
                 </Card.Title>
                 <Card.Text>
-                  <p>Author: {authorName}</p>
-                  <p>Genra: {genra}</p>
-                  <p> Publication Date: {registered}</p>
+                  <p>Author: {author}</p>
+                  <p>Genra: {genre}</p>
+                  <p> Publication Date: {createdAt}</p>
                   <p>
                     <span>
                       Rate Book:
@@ -84,7 +86,7 @@ const BookDetails = () => {
             </Card.Body>
           </Col>
         </Row>
-        <Comment id={id} />
+        {/* <Comment id={id} /> */}
       </Card>
     </div>
   );

@@ -6,9 +6,11 @@ import { useDispatch } from "react-redux";
 import { removeFromBookmark } from "../../../redux/features/BookmarkSlice";
 import Swal from "sweetalert2";
 
+
 const BookmarkList = ({book}) => {
-    const { authorName, picture, title, genra, registered } = book;
+    const { author, picture, title, genre, createdAt } = book;
     const dispatch = useDispatch();
+    
     const removeHandler = ()=>{
       Swal.fire({
         title: 'Are you sure to delete?',
@@ -20,29 +22,29 @@ const BookmarkList = ({book}) => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
+          dispatch(removeFromBookmark(book))
           Swal.fire(
             'Deleted!',
             'Your file has been deleted.',
             'success'
           )
-          dispatch(removeFromBookmark(book))
         }
       })
     }
     return (
       <Col>
           <Card className="card mx-2" >
-            <Card.Img variant="top" src={picture} className="cardImg" />
+            <Card.Img variant="top" src='/images/book1.webp' className="cardImg" />
             <Card.Body>
               <Card.Title>Title: {title}</Card.Title>
               <Card.Text>
-                <p>Author: {authorName}</p>
+                <p>Author: {author}</p>
                 <div className="d-flex align-items-center justify-content-between">
                   <p>
-                    <BiBook /> {genra}
+                    <BiBook /> {genre}
                   </p>
                   <p>
-                    <CiCalendarDate /> {registered}
+                    <CiCalendarDate /> {createdAt}
                   </p>
                 </div>
                 <div className="d-flex align-items-center justify-content-center">

@@ -21,7 +21,7 @@ const Header = () => {
   const { page, limit, filter } = useSelector((state) => state.book);
 
   const dispatch = useDispatch();
-  console.log({ page, limit, filter });
+  // console.log({ page, limit, filter });
 
   const { data } = useGetBooksQuery({ page, limit, filter });
 

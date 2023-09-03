@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: {},
   isLogin: false,
-  isSearchedByBook: false,
-  searchProperty:"",
+  token : ''
 };
 
 export const userSlice = createSlice({
@@ -12,7 +11,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.user = action.payload;
+      // state.user = action.payload.user;
+      state.token = action.payload.token;
       state.isLogin = true;
     },
     logout: (state, action) => {

@@ -5,6 +5,7 @@ import BookmarkList from "../../components/BookmarkList/BookmarkList";
 
 const Bookmarks = () => {
     const {booksInCarts}= useSelector(state=>state.bookmark)
+    console.log(booksInCarts);
     return (
         <Row xs={1} xm={2} md={4} className="gy-4 gx-0 mt-1 mb-5">
         {booksInCarts?.length !== 0 ? (

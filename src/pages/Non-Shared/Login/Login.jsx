@@ -5,30 +5,30 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useGetUserQuery } from "../../../redux/api";
+import { useLoginUserMutation } from "../../../redux/api";
 import { login } from "../../../redux/features/UserSlice";
 import { useState } from "react";
 
 const Login = () => {
-  const [isClicked, setIsClicked] = useState();
-  const { data } = useGetUserQuery("", { refetchOnFocus: true, refetchOnMountOrArgChange: true });
+  const [isValidUser, setIsValidUser] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [loginUser, ] = useLoginUserMutation();
   const dispatch = useDispatch();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
-  const onFinish = ({ email, password }) => {
-    const authUser = data.find((d) => d.email === email);
-
-    if (!authUser) {
-      setIsClicked(true);
-      return;
-    }
-
-    if (authUser.password === password) {
-      const user = { ...authUser, password: undefined, confirmPassword: undefined };
-      dispatch(login(user));
+  const onFinish = async (values) => {
+    setIsClicked(true)
+    try {
+      const { data,success } = await loginUser(values).unwrap();
+      if (!success) {
+        return setIsValidUser(false);
+      }
+      const { token } = data;
+      dispatch(login({ token }));
+      setIsValidUser(true)
       navigate('/')
-    } else {
-      setIsClicked(true);
+    } catch (error) {
+      console.log(error);
     }
   };
   const onFinishFailed = (errorInfo) => {
@@ -99,7 +99,7 @@ const Login = () => {
                 </Link>
               </div>
             </div>
-            {isClicked ? (
+            { isClicked && !isValidUser  ? (
               <div>
                 <p className="mb-2 text-danger">Email or password incorrect</p>
               </div>

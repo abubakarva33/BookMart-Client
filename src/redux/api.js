@@ -2,23 +2,56 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://book-store-a8-omega.vercel.app/api/v1/" }),
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().user.token;
+    console.log(token);
+    if (token) {
+      headers.set("authorization", token);
+    }
+    return headers;
+  },
   tagTypes: ["Post", "User", "cart"],
   endpoints: (builder) => ({
-    getUser: builder.query({
-      query: () => `authors`,
+    createUser: builder.mutation({
+      query: (body) => ({
+        url: `auth/signup`,
+        method: "POST",
+        body,
+      }),
+    }),
+    loginUser: builder.mutation({
+      query: (body) => ({
+        url: `auth/signin`,
+        method: "POST",
+        body,
+      }),
+    }),
+    getUserProfile: builder.query({
+      query: () => ({
+        url: `profile`,
+      }),
     }),
     getBooks: builder.query({
-      query: ({ page, limit, filter }) =>
-        `books?_sort=id&_order=desc&_page=${page}&_limit=${limit}&${
-          filter ? "genra=" + filter : ""
-        }`,
+      query: () => `books`,
       providesTags: ["Post"],
     }),
     getSelectedBook: builder.query({
       query: (id) => `books/${id}`,
       providesTags: ["Post"],
     }),
+
+
+
+
+    // getBooks: builder.query({
+    //   query: ({ page, limit, filter }) =>
+    //     `books?_sort=id&_order=desc&_page=${page}&_limit=${limit}&${
+    //       filter ? "genra=" + filter : ""
+    //     }`,
+    //   providesTags: ["Post"],
+    // }),
+
     getBooksByAuthor: builder.query({
       query: (authorId) => `books/?user.id=${authorId}`,
       providesTags: ["Post"],
@@ -69,19 +102,22 @@ export const api = createApi({
       }),
       invalidatesTags: ["cart"],
     }),
-    createUser: builder.mutation({
-      query: ({ ...body }) => ({
-        url: `authors`,
-        method: "POST",
-        body,
-      }),
-    }),
+    // createUser: builder.mutation({
+    //   query: ({ ...body }) => ({
+    //     url: `authors`,
+    //     method: "POST",
+    //     body,
+    //   }),
+    // }),
   }),
 });
 
 export const {
-  useGetUserQuery,
   useCreateUserMutation,
+  useLoginUserMutation,
+  useGetUserProfileQuery,
+
+  useGetUserQuery,
   useGetBooksQuery,
   useGetSelectedBookQuery,
   useGetCommentsQuery,

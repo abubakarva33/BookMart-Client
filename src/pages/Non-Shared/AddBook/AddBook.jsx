@@ -1,5 +1,5 @@
 import "./AddBook.css";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 import { DatePicker } from "antd";
 import { usePostABookMutation } from "../../../redux/api";
 const { Option } = Select;
@@ -53,7 +53,7 @@ const AddBook = () => {
         </Form.Item>
         <Form.Item
           label="Author Name"
-          name="authorName"
+          name="author"
           rules={[
             {
               required: true,
@@ -63,17 +63,31 @@ const AddBook = () => {
         >
           <Input placeholder="Please input author name" />
         </Form.Item>
+
         <Form.Item
-          label="Select Genra"
-          name="genra"
+          label="Book Price"
+          name="price"
           rules={[
             {
               required: true,
-              message: "Genra is required",
+              message: "Price name is required",
             },
           ]}
         >
-          <Select placeholder="Select genra">
+          <InputNumber placeholder="Please input book price" className="w-100" type="number"/>
+        </Form.Item>
+
+        <Form.Item
+          label="Select Genre"
+          name="genre"
+          rules={[
+            {
+              required: true,
+              message: "Genre is required",
+            },
+          ]}
+        >
+          <Select placeholder="Select genre">
             <Option value="Thriller">Thriller</Option>
             <Option value="Science Fiction">Science Fiction</Option>
             <Option value="Religious">Religious</Option>
@@ -82,7 +96,7 @@ const AddBook = () => {
             <Option value="others">Others</Option>
           </Select>
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="Select Cover Page"
           name="image"
           rules={[
@@ -100,11 +114,11 @@ const AddBook = () => {
             <Option value="book5">Cover 05</Option>
             <Option value="book6">Cover 06</Option>
           </Select>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
-          name="registered"
-          label="DatePicker"
+          name="publicationDate"
+          label="publication Date"
           rules={[
             {
               type: "object",

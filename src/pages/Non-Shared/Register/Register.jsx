@@ -8,29 +8,36 @@ import { useDispatch } from "react-redux";
 import { useCreateUserMutation } from "../../../redux/api";
 import { useState } from "react";
 import ModalSuccess from "../../components/Modal/Modal";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [show, setShow] = useState(false);
-  const [isMatchedPass, setIsMatchedPass] = useState(true);
   const [form] = Form.useForm();
   const [addUser] = useCreateUserMutation();
   const dispatch = useDispatch();
-  const onFinish = (values) => {
-    if (values.password === values.confirmPassword) {
-      setIsMatchedPass(true);
-    } else {
-      setIsMatchedPass(false);
-      return;
+  const [isMatched, setIsMatched] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const onFinish = ({ password, confirmPassword, ...values }) => {
+    setIsClicked(true)
+    if (password !== confirmPassword) {
+      setIsMatched(false)
+      return
     }
     try {
-      dispatch(addUser(values));
-      form.resetFields();
+      setIsMatched(true)
+      dispatch(addUser({...values,password, role: 'customer'}))
     } catch (error) {
       console.log(error);
-    } finally {
+    }finally{
       form.resetFields();
-      setShow(true)
+      Swal.fire({
+        icon: 'success',
+        title: 'Sign up successful',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
     }
+
   };
   return (
     <div>
@@ -56,7 +63,7 @@ const Register = () => {
             <div>
               <h6>Full Name</h6>
               <Form.Item
-                name="username"
+                name="name"
                 rules={[
                   {
                     required: true,
@@ -89,6 +96,61 @@ const Register = () => {
                 />
               </Form.Item>
             </div>
+            <div>
+              <h6>contact No</h6>
+              <Form.Item
+                name="contactNo"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Username!",
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  type="name"
+                  placeholder="Full Name"
+                />
+              </Form.Item>
+            </div>
+            <div>
+              <h6>Address</h6>
+              <Form.Item
+                name="address"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your address!",
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  type="name"
+                  placeholder="Full Name"
+                />
+              </Form.Item>
+            </div>
+            <div>
+              <h6>Profile Img</h6>
+              <Form.Item
+                name="profileImg"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Profile Image!",
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  type="name"
+                  placeholder="Full Name"
+                />
+              </Form.Item>
+            </div>
+
             <div>
               <h6>Password</h6>
               <Form.Item
@@ -125,7 +187,7 @@ const Register = () => {
                 />
               </Form.Item>
             </div>
-            {!isMatchedPass ? <p className="text-danger">Passwords doesn't matched </p> : null}
+            {isClicked && !isMatched ? <p className="text-danger">Passwords doesn't matched </p> : null}
             <div className="btnGroups">
               <Button type="primary" htmlType="submit" className="login-form-button mb-3 w-100">
                 Register
@@ -150,12 +212,7 @@ const Register = () => {
           </Form>
         </Col>
 
-        <ModalSuccess
-        show={show}
-        setShow= {setShow}
-        >
-        </ModalSuccess>
-
+        <ModalSuccess show={show} setShow={setShow}></ModalSuccess>
       </Row>
     </div>
   );
