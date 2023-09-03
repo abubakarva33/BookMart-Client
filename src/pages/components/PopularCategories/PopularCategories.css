@@ -1,0 +1,8 @@
+.category {
+  box-shadow: 5px 5px 31px #dadedd, -5px -5px 31px #ffffff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 15px;
+  align-items: center;
+}

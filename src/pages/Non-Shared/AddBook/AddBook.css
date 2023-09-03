@@ -1,0 +1,13 @@
+.ant-form-item .ant-form-item-label >label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before{
+    content: '';
+}
+.ant-form-item{
+    margin-bottom: 10px;
+}
+
+.bookCenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

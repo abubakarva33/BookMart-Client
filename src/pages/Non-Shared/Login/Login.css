@@ -1,0 +1,24 @@
+.userForm{
+  /* min-height: 90vh; */
+}
+.btnGroups {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+}
+.login-form {
+  padding: 20px;
+  margin: 0 20px;
+}
+.login-left{
+  background-image: image-set("/images/bg-form.webp");
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #fffffe;
+}
+.checkboxForm{
+  margin-bottom: 0;
+}

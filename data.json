@@ -1,0 +1,264 @@
+{
+  "authors": [
+    {
+      "username": "dfgaadddg",
+      "email": "gtfj@ds.dsf",
+      "password": "sdgsgsdgsg",
+      "confirmPassword": "yuiyuuioui",
+      "id": 1
+    },
+    {
+      "username": "dfgdg",
+      "email": "rt!@d.d",
+      "password": "sdgsgsdgsg",
+      "confirmPassword": "dfhfhfhfh",
+      "id": 2
+    },
+    {
+      "username": "fghfgh",
+      "email": "dfghdhf@sd.sd",
+      "password": "sdfgsfsfd",
+      "confirmPassword": "sdgsdgdg",
+      "id": 3
+    },
+    {
+      "username": "dfgdg",
+      "email": "a@s.d",
+      "password": "123",
+      "confirmPassword": "123",
+      "id": 4
+    },
+    {
+      "username": "dfgdsg",
+      "email": "bakar@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "id": 5
+    },
+    {
+      "username": "abubakar",
+      "email": "abubakar@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "id": 6
+    },
+    {
+      "username": "Gones rajbongshi ",
+      "email": "gchanger814@gmail.com",
+      "password": "01350415",
+      "confirmPassword": "01350415",
+      "id": 7
+    },
+    {
+      "username": "bokor",
+      "email": "bokor@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 8
+    }
+  ],
+  "books": [
+    {
+      "title": "bokor",
+      "authorName": "bokor",
+      "genra": "Horor",
+      "picture": "/images/book3.webp",
+      "registered": "28-09-2023",
+      "user": {
+        "username": "dfgdsg",
+        "email": "bakar@gmail.com",
+        "id": 5
+      },
+      "id": 1
+    },
+    {
+      "title": "biology",
+      "authorName": "mithil",
+      "genra": "Romantic",
+      "picture": "/images/book5.webp",
+      "registered": "12-09-2023",
+      "user": {
+        "username": "dfgdsg",
+        "email": "bakar@gmail.com",
+        "id": 5
+      },
+      "id": 2
+    },
+    {
+      "title": "bokor",
+      "authorName": "bokor vai",
+      "genra": "Science Fiction",
+      "picture": "/images/book3.webp",
+      "registered": "12-09-2023",
+      "user": {
+        "username": "abubakar",
+        "email": "abubakar@gmail.com",
+        "id": 6
+      },
+      "id": 4
+    },
+    {
+      "title": "bokor",
+      "authorName": "gykghkg",
+      "genra": "Religious",
+      "picture": "/images/book2.webp",
+      "registered": "20-09-2023",
+      "user": {
+        "username": "abubakar",
+        "email": "abubakar@gmail.com",
+        "id": 6
+      },
+      "id": 5
+    },
+    {
+      "title": "bokor",
+      "authorName": "bokor vai",
+      "genra": "Thriller",
+      "picture": "/images/book2.webp",
+      "registered": "20-09-2023",
+      "user": {
+        "username": "abubakar",
+        "email": "abubakar@gmail.com",
+        "id": 6
+      },
+      "id": 6
+    },
+    {
+      "title": "bokor",
+      "authorName": "bokor vai",
+      "genra": "Religious",
+      "picture": "/images/book1.webp",
+      "registered": "19-09-2023",
+      "user": {
+        "username": "abubakar",
+        "email": "abubakar@gmail.com",
+        "id": 6
+      },
+      "id": 7
+    },
+    {
+      "title": "biology",
+      "authorName": "bokor",
+      "genra": "Religious",
+      "picture": "/images/book2.webp",
+      "registered": "28-09-2023",
+      "user": {
+        "username": "abubakar",
+        "email": "abubakar@gmail.com",
+        "id": 6
+      },
+      "id": 8
+    },
+    {
+      "title": "Brilliant ,",
+      "authorName": "Rinku ",
+      "genra": "Science Fiction",
+      "picture": "/images/book6.webp",
+      "registered": "17-02-2022",
+      "user": {
+        "username": "Gones rajbongshi ",
+        "email": "gchanger814@gmail.com",
+        "id": 7
+      },
+      "id": 9
+    },
+    {
+      "title": "Petra",
+      "authorName": "mark",
+      "genra": "Science Fiction",
+      "picture": "/images/book2.webp",
+      "registered": "14-09-2023",
+      "user": {
+        "username": "dfgdsg",
+        "email": "bakar@gmail.com",
+        "id": 5
+      },
+      "id": 10
+    },
+    {
+      "title": "Finance",
+      "authorName": "Azaz",
+      "genra": "others",
+      "picture": "/images/book6.webp",
+      "registered": "02-09-2023",
+      "user": {
+        "username": "bokor",
+        "email": "bokor@gmail.com",
+        "id": 8
+      },
+      "id": 11
+    }
+  ],
+  "reviews": [
+    {
+      "about": "hfgdfgdcgfcjhgjhgvjh",
+      "user": {},
+      "bookId": 8,
+      "id": 1
+    },
+    {
+      "about": "nice book",
+      "user": {
+        "username": "dfgdsg",
+        "email": "bakar@gmail.com",
+        "id": 5
+      },
+      "bookId": 10,
+      "id": 2
+    },
+    {
+      "about": "djhedgmgjrf\n",
+      "user": {
+        "username": "bokor",
+        "email": "bokor@gmail.com",
+        "id": 8
+      },
+      "bookId": 11,
+      "id": 3
+    }
+  ],
+  "cartData": [
+    {
+      "book": {
+        "title": "Finance",
+        "authorName": "Azaz",
+        "genra": "others",
+        "picture": "/images/book6.webp",
+        "registered": "02-09-2023",
+        "user": {
+          "username": "bokor",
+          "email": "bokor@gmail.com",
+          "id": 8
+        },
+        "id": 11
+      },
+      "user": {
+        "username": "bokor",
+        "email": "bokor@gmail.com",
+        "id": 8
+      },
+      "id": 1
+    },
+    {
+      "book": {
+        "title": "Petra",
+        "authorName": "mark",
+        "genra": "Science Fiction",
+        "picture": "/images/book2.webp",
+        "registered": "14-09-2023",
+        "user": {
+          "username": "dfgdsg",
+          "email": "bakar@gmail.com",
+          "id": 5
+        },
+        "id": 10
+      },
+      "user": {
+        "username": "bokor",
+        "email": "bokor@gmail.com",
+        "id": 8
+      },
+      "id": 2
+    }
+  ]
+}

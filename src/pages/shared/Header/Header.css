@@ -1,0 +1,16 @@
+.header{
+    background-color: #00473e;
+}
+.navbar-expand-lg .navbar-collapse{
+    justify-content: flex-end !important;
+}
+.logo{
+    max-height: 65px;
+    max-width: 200px;
+}
+.navLink{
+    text-decoration: none;
+    color: #f2f7f5;
+    font-size: 18px;
+    background: none;
+}

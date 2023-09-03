@@ -1,0 +1,12 @@
+.cardImg{
+    max-height: 250px;
+}
+.card{
+    border: none;
+    box-shadow: 5px 5px 23px #dadedd, -5px -5px 23px #ffffff !important;
+    background: #f2f7f5;
+    color: rgb(26, 25, 25);
+}
+.card p{
+    margin-bottom: 8px;
+}
