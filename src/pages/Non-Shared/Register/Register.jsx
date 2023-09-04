@@ -1,6 +1,6 @@
 import "./Register.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
@@ -9,35 +9,42 @@ import { useCreateUserMutation } from "../../../redux/api";
 import { useState } from "react";
 import ModalSuccess from "../../components/Modal/Modal";
 import Swal from "sweetalert2";
+import { Option } from "antd/es/mentions";
 
 const Register = () => {
   const [show, setShow] = useState(false);
   const [form] = Form.useForm();
-  const [addUser] = useCreateUserMutation();
+  const [addUser,] = useCreateUserMutation();
   const dispatch = useDispatch();
   const [isMatched, setIsMatched] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
-  const onFinish = ({ password, confirmPassword, ...values }) => {
-    setIsClicked(true)
+  const onFinish = ({ password, profileImg, confirmPassword, ...values }) => {
+    const picture = `/images/${profileImg}.webp`;
+    const data = {
+      ...values,
+      password,
+      profileImg: picture,
+      role: "customer",
+    };
+    setIsClicked(true);
     if (password !== confirmPassword) {
-      setIsMatched(false)
-      return
+      setIsMatched(false);
+      return;
     }
     try {
-      setIsMatched(true)
-      dispatch(addUser({...values,password, role: 'customer'}))
+      setIsMatched(true);
+      dispatch(addUser(data));
     } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       form.resetFields();
       Swal.fire({
-        icon: 'success',
-        title: 'Sign up successful',
-        footer: '<a href="">Why do I have this issue?</a>'
-      })
+        icon: "success",
+        title: "Sign up successful",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
     }
-
   };
   return (
     <div>
@@ -135,19 +142,20 @@ const Register = () => {
             <div>
               <h6>Profile Img</h6>
               <Form.Item
+                label="Select User Image"
                 name="profileImg"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your Profile Image!",
+                    message: "User image is required",
                   },
                 ]}
               >
-                <Input
-                  prefix={<UserOutlined className="site-form-item-icon" />}
-                  type="name"
-                  placeholder="Full Name"
-                />
+                <Select placeholder="Select cover page">
+                  <Option value="user1">Cover 01</Option>
+                  <Option value="user2">Cover 02</Option>
+                  <Option value="user3">Cover 03</Option>
+                </Select>
               </Form.Item>
             </div>
 
@@ -187,7 +195,9 @@ const Register = () => {
                 />
               </Form.Item>
             </div>
-            {isClicked && !isMatched ? <p className="text-danger">Passwords doesn't matched </p> : null}
+            {isClicked && !isMatched ? (
+              <p className="text-danger">Passwords doesn't matched </p>
+            ) : null}
             <div className="btnGroups">
               <Button type="primary" htmlType="submit" className="login-form-button mb-3 w-100">
                 Register
