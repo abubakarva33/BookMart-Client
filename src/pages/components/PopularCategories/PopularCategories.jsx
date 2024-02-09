@@ -6,9 +6,12 @@ import { CiRainbow } from "react-icons/ci";
 import { FaBity, FaAffiliatetheme } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { filterByGenra } from "../../../redux/features/BookSlice";
+import { useGetCategoriesQuery } from "../../../redux/api";
 
 const PopularCategories = () => {
   const dispatch = useDispatch();
+  const { categories } = useGetCategoriesQuery();
+  console.log(categories);
   return (
     <div>
       <h3 className="mt-4">Popular Category</h3>

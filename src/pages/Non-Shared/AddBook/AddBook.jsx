@@ -1,26 +1,26 @@
 import "./AddBook.css";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import { DatePicker } from "antd";
-import { usePostABookMutation } from "../../../redux/api";
+import { useCreateBookMutation } from "../../../redux/api";
 const { Option } = Select;
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 const AddBook = () => {
   const { user } = useSelector((state) => state.user);
-  const [createBook] = usePostABookMutation();
+  const [createBook]=useCreateBookMutation();
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    const { image, registered, ...items } = values;
-    const picture = `/images/${image}.webp`;
-    const data = {
-      ...items,
-      picture,
-      registered: registered.format("DD-MM-YYYY"),
-      user,
-    };
-    createBook(data);
+    // const { image, registered, ...items } = values;
+    // const picture = `/images/${image}.webp`;
+    // const data = {
+    //   ...items,
+    //   picture,
+    //   registered: registered.format("DD-MM-YYYY"),
+    //   user,
+    // };
+    createBook({...values, categoryId: 'sdgfsfgufgvgs'});
     form.resetFields();
     Swal.fire({
       icon: 'success',

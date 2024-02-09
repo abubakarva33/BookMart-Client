@@ -9,14 +9,11 @@ import { useGetBooksQuery } from "../../../redux/api";
 
 
 const BookList = () => {
+  const dispatch = useDispatch();
   const {data, isLoading}=useGetBooksQuery();
   if (isLoading) {
     return <p> loading...</p>
   }
-  console.log(data?.data);
-  const dispatch = useDispatch();
-
-
   const onShowSizeChange = (page, limit) => {
     dispatch(setPage(page));
     dispatch(setLimit(limit));

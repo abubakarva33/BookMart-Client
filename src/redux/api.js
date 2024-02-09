@@ -5,7 +5,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://book-store-a8-omega.vercel.app/api/v1/" }),
   prepareHeaders: (headers, { getState }) => {
     const token = getState().user.token;
-    console.log(token);
+    console.log({token});
     if (token) {
       headers.set("authorization", token);
     }
@@ -40,7 +40,17 @@ export const api = createApi({
       query: (id) => `books/${id}`,
       providesTags: ["Post"],
     }),
-
+    createBook: builder.mutation({
+      query: ({ ...body }) => ({
+        url: `books/create-book`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Post"],
+    }),
+    getCategories: builder.query({
+      query: () => `categories`,
+    }),
 
 
 
@@ -75,14 +85,14 @@ export const api = createApi({
       }),
       invalidatesTags: ["Post"],
     }),
-    postABook: builder.mutation({
-      query: ({ ...body }) => ({
-        url: `books`,
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: ["Post"],
-    }),
+    // postABook: builder.mutation({
+    //   query: ({ ...body }) => ({
+    //     url: `books`,
+    //     method: "POST",
+    //     body,
+    //   }),
+    //   invalidatesTags: ["Post"],
+    // }),
     addToCart: builder.mutation({
       query: (body) => ({
         url: `cartData`,
@@ -116,10 +126,12 @@ export const {
   useCreateUserMutation,
   useLoginUserMutation,
   useGetUserProfileQuery,
-
-  useGetUserQuery,
+  useCreateBookMutation,
   useGetBooksQuery,
   useGetSelectedBookQuery,
+  useGetCategoriesQuery,
+
+  useGetUserQuery,
   useGetCommentsQuery,
   usePostACommentMutation,
   usePostABookMutation,
