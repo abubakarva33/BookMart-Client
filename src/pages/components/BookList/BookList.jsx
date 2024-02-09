@@ -12,10 +12,10 @@ const BookList = () => {
   if (isLoading) {
     return <p> loading...</p>;
   }
-  const onShowSizeChange = (page, limit) => {
-    dispatch(setPage(page));
-    dispatch(setLimit(limit));
-  };
+  // const onShowSizeChange = (page, limit) => {
+  //   dispatch(setPage(page));
+  //   dispatch(setLimit(limit));
+  // };
   return (
     <div>
       <>
